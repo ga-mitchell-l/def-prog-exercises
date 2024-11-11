@@ -7,7 +7,7 @@ import (
 
 	_ "github.com/glebarez/go-sqlite"
 
-	"github.com/empijei/def-prog-exercises/app"
+	"github.com/ga-mitchell-l/def-prog-exercises/app"
 )
 
 func main() {

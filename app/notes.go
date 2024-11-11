@@ -83,6 +83,11 @@ func (nh *notesHandler) deleteNote(ctx context.Context, id int) error {
 	return err
 }
 
+func getServeMux() *http.ServeMux {
+	n := http.NewServeMux()
+	return n
+}
+
 func Notes(ctx context.Context, auth *AuthHandler) http.Handler {
 	db := must(sql.Open("sqlite", "./notes.db"))
 	nh := &notesHandler{db, auth}
@@ -90,7 +95,7 @@ func Notes(ctx context.Context, auth *AuthHandler) http.Handler {
 		log.Fatalf("Cannot initialize notes: %v", err)
 	}
 
-	n := http.NewServeMux()
+	n := getServeMux()
 
 	// Home for the note page
 	n.HandleFunc("/notes/", func(w http.ResponseWriter, r *http.Request) {
